@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const ChatBot = () => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([
+        { role: "assistant", content: "Hello! Welcome to Groovy Customer Support. How can I help you today?" }
+    ]);
     const [input, setInput] = useState("");
     const [isMinimized, setIsMinimized] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
@@ -48,15 +50,16 @@ const ChatBot = () => {
             {isMinimized ? (
                 <button
                     onClick={() => setIsMinimized(false)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition"
+                    className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white px-4 py-2 rounded-full shadow-lg hover:opacity-90 transition"
                     aria-label="Open chat"
                 >
                     💬 Chat
                 </button>
             ) : (
                 <div className="w-80 h-96 bg-white border border-gray-300 rounded-lg shadow-lg flex flex-col">
-                    <div className="bg-blue-600 text-white flex justify-between items-center py-2 px-4 rounded-t-lg">
-                        <span className="font-semibold">ChatGPT Customer Support</span>
+                    {/* Chat Header */}
+                    <div className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white flex justify-between items-center py-2 px-4 rounded-t-lg">
+                        <span className="font-bold text-lg">Groovy Customer Support</span>
                         <button
                             onClick={() => setIsMinimized(true)}
                             className="text-white text-lg hover:text-gray-200"
@@ -66,12 +69,14 @@ const ChatBot = () => {
                         </button>
                     </div>
 
-                    <div className="flex-1 p-2 overflow-y-auto bg-gray-50 space-y-2">
-                        {messages.map((msg, index) => (
+                    <div className="flex-1 p-2 overflow-y-auto bg-yellow-50 space-y-2 rounded-xl">
+                    {messages.map((msg, index) => (
                             <div
                                 key={index}
-                                className={`p-2 rounded-md text-sm ${
-                                    msg.role === "user" ? "bg-blue-200 text-right" : "bg-green-200 text-left"
+                                className={`p-2 rounded-lg text-sm ${
+                                    msg.role === "user"
+                                        ? "bg-orange-200 text-right"
+                                        : "bg-teal-200 text-left"
                                 }`}
                             >
                                 {msg.content}
@@ -81,17 +86,17 @@ const ChatBot = () => {
                         <div ref={messagesEndRef} />
                     </div>
 
-                    <div className="flex border-t border-gray-300">
+                    <div className="flex border-t border-gray-300 bg-yellow-100">
                         <input
                             type="text"
                             value={input}
-                            placeholder="Ask me anything..."
+                            placeholder="Ask me anything about music or vinyl..."
                             onChange={(e) => setInput(e.target.value)}
-                            className="flex-1 p-2 text-sm border-none focus:outline-none"
+                            className="flex-1 p-2 text-sm bg-yellow-50 border-none focus:outline-none rounded-l-md"
                         />
                         <button
                             onClick={sendMessage}
-                            className="bg-blue-600 text-white px-4 py-2 hover:bg-blue-700 transition"
+                            className="bg-gradient-to-r from-orange-400 to-red-400 text-white px-4 py-2 rounded-r-md hover:opacity-90 transition"
                             aria-label="Send message"
                         >
                             Send

@@ -1,64 +1,72 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+    const handleEmailChange = (e) => setEmail(e.target.value);
+    const handlePasswordChange = (e) => setPassword(e.target.value);
 
-    const handleRegister = async () => {
-        try {
-            const response = await axios.post('http://localhost:8080/api/auth/register', { email, password });
-            setMessage(`User registered successfully! ID: ${response.data.id}`);
-        } catch (error) {
-            setMessage('Registration failed. User may already exist.');
-            console.error(error);
-        }
-    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    const handleLogin = async () => {
+        const userData = { email, password };
+
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
-            setMessage(`Logged in successfully!`);
+            const response = await axios.post('http://localhost:8080/api/users/login', userData);
+
+            if (response.status === 200) {
+                const { userId } = response.data;
+                localStorage.setItem('isLoggedIn', true);
+                localStorage.setItem('userId', userId);
+                setMessage('Login successful!');
+                navigate('/');
+            } else {
+                setError('Invalid credentials.');
+            }
         } catch (error) {
-            setMessage('Invalid email or password.');
-            console.error(error);
+            setError('An error occurred while logging in.');
+            console.error('Login error:', error);
         }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="p-8 bg-white shadow-lg rounded-lg w-full max-w-md">
-                <h2 className="text-2xl font-bold text-center mb-6">Login / Register</h2>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <div className="flex justify-between">
-                    <button
-                        onClick={handleLogin}
-                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-                    >
+        <div className="flex justify-center items-center h-screen bg-gray-100">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+                <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-4">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={handleEmailChange}
+                            required
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            required
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                        />
+                    </div>
+                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
                         Login
                     </button>
-                    <button
-                        onClick={handleRegister}
-                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
-                    >
-                        Register
-                    </button>
-                </div>
-                {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+                </form>
+                {message && <div className="mt-4 text-green-500 text-center">{message}</div>}
+                {error && <div className="mt-4 text-red-500 text-center">{error}</div>}
             </div>
         </div>
     );

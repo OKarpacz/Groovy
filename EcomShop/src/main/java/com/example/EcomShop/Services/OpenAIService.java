@@ -17,9 +17,19 @@ public class OpenAIService {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
+            String prompt = "You are an AI assistant specialized in music and vinyl records. Answer questions only about music, vinyl records, artists, bands, albums, and record care. If a question is unrelated, respond with: 'I can only answer questions about music and vinyl records.'";
+
+            List<Map<String, String>> updatedMessages = new ArrayList<>();
+            updatedMessages.add(Map.of("role", "system", "content", prompt));
+            updatedMessages.addAll(messages);
+
+            if (!isRelevantTopic(messages.get(messages.size() - 1).get("content"))) {
+                return "I can only answer questions about music and vinyl records.";
+            }
+
             Map<String, Object> body = new HashMap<>();
             body.put("model", "gpt-3.5-turbo");
-            body.put("messages", messages);
+            body.put("messages", updatedMessages);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -40,5 +50,11 @@ public class OpenAIService {
         } catch (Exception e) {
             return "Error while calling OpenAI API: " + e.getMessage();
         }
+    }
+
+    private boolean isRelevantTopic(String userMessage) {
+        String lowerCaseMessage = userMessage.toLowerCase();
+        List<String> allowedTopics = Arrays.asList("music", "vinyl", "records", "albums", "bands", "artists");
+        return allowedTopics.stream().anyMatch(lowerCaseMessage::contains);
     }
 }

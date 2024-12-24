@@ -1,5 +1,6 @@
 package com.example.EcomShop.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,12 @@ public class User {
     private String email;
     private String password;
 
+    private String firstName;
+    private String lastName;
+    private String address;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<CustomerOrder> customerOrders = new ArrayList<>();
 
     public User(Long id, String email, String password) {
