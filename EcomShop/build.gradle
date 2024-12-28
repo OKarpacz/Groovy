@@ -27,6 +27,9 @@ dependencies {
 	implementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	//LastFMAPI
+	implementation 'org.json:json:20210307'
+
 	// MariaDB JDBC Driver
 	implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.1'
 

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,12 +47,16 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody User user) {
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
         User existingUser = userService.getUserByEmail(user.getEmail());
         if (existingUser != null && userService.validateUserCredentials(user.getEmail(), user.getPassword())) {
-            return ResponseEntity.ok("Login successful!");
+            Map<String, Object> response = new HashMap<>();
+            response.put("userId", existingUser.getId());
+            response.put("message", "Login successful!");
+            return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
     }
+
 }

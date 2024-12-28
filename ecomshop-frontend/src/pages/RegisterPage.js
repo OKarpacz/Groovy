@@ -35,57 +35,111 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="p-8 bg-white shadow-lg rounded-lg w-full max-w-md">
-                <h2 className="text-2xl font-bold text-center mb-6">Register</h2>
-                <input
-                    type="text"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <input
-                    type="text"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <textarea
-                    placeholder="Address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    className="w-full p-2 mb-4 border rounded"
-                />
-                <button
-                    onClick={handleRegister}
-                    className="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+        <div
+            className="flex justify-center items-center h-screen"
+            style={{
+                background: 'linear-gradient(135deg, #ffcc70, #ff9472)',
+                backgroundImage: 'url(/path-to-your-floral-background-image.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
+        >
+            <div className="bg-white/80 p-8 rounded-lg shadow-2xl w-96">
+                <h2
+                    className="text-3xl font-bold text-center mb-6 text-orange-800"
+                    style={{ fontFamily: "'Cooper Black', cursive" }}
                 >
-                    Register
-                </button>
-                {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+                    Create Your Account
+                </h2>
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <input
+                        type="text"
+                        placeholder="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md"
+                        style={{
+                            borderRadius: '12px',
+                            fontFamily: "'Poppins', sans-serif",
+                        }}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Last Name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md"
+                        style={{
+                            borderRadius: '12px',
+                            fontFamily: "'Poppins', sans-serif",
+                        }}
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md"
+                        style={{
+                            borderRadius: '12px',
+                            fontFamily: "'Poppins', sans-serif",
+                        }}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md"
+                        style={{
+                            borderRadius: '12px',
+                            fontFamily: "'Poppins', sans-serif",
+                        }}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md"
+                        style={{
+                            borderRadius: '12px',
+                            fontFamily: "'Poppins', sans-serif",
+                        }}
+                    />
+                    <textarea
+                        placeholder="Address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md"
+                        style={{
+                            borderRadius: '12px',
+                            fontFamily: "'Poppins', sans-serif",
+                        }}
+                    />
+                    <button
+                        type="button"
+                        onClick={handleRegister}
+                        className="w-full py-2 rounded-md shadow-lg"
+                        style={{
+                            background: 'linear-gradient(90deg, #f77f00, #fcbf49)',
+                            color: 'white',
+                            fontFamily: "'Cooper Black', cursive",
+                            borderRadius: '20px',
+                        }}
+                    >
+                        Register
+                    </button>
+                </form>
+                {message && (
+                    <div
+                        className={`mt-4 text-center ${
+                            message.includes('successfully') ? 'text-green-500' : 'text-red-500'
+                        }`}
+                    >
+                        {message}
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -27,7 +27,6 @@ const StoreLocations = () => {
                 backgroundPosition: "center",
             }}
         >
-            {/* Blurred Overlay */}
             <div className="absolute inset-0 bg-white bg-opacity-50 backdrop-blur-sm"></div>
 
             <div className="relative container mx-auto px-6">

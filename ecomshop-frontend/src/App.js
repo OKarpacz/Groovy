@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
-import ShopPage from "./pages/ShopPage";
 import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ChatBot from "./components/ChatBot";
-
+import FAQPage from "./pages/FAQPage";
+import TopChartsPage from "./pages/TopChartsPage";
 
 const cartReducer = (state, action) => {
     switch (action.type) {
@@ -56,19 +56,15 @@ const App = () => {
         <div className="relative bg-gradient-to-b from-orange-300 via-pink-200 to-yellow-200">
         <Router>
             <div className="flex flex-col min-h-screen">
-                {/* Navbar */}
                 <Navbar />
 
-                {/* Main Content */}
                 <main className="flex-grow container mx-auto px-4 py-8">
                     <Routes>
                         <Route
                             path="/"
                             element={
                                 <HomePage
-                                    onAddToCart={(product) =>
-                                        dispatch({ type: "ADD_TO_CART", payload: product })
-                                    }
+                                    onAddToCart={(product) => dispatch({ type: "ADD_TO_CART", payload: product })}
                                 />
                             }
                         />
@@ -84,14 +80,14 @@ const App = () => {
                         />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/faq" element={<FAQPage />} />
+                        <Route path="/top-charts" element={<TopChartsPage />} />
                     </Routes>
                 </main>
 
-                {/* Footer */}
                 <Footer />
             </div>
 
-            {/* ChatBot */}
             <ChatBot />
         </Router>
         </div>

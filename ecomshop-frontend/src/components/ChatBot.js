@@ -3,7 +3,7 @@ import axios from "axios";
 
 const ChatBot = () => {
     const [messages, setMessages] = useState([
-        { role: "assistant", content: "Hello! Welcome to Groovy Customer Support. How can I help you today?" }
+        { role: "assistant", content: "Hello! I'm Grooves. How can I help you today?" }
     ]);
     const [input, setInput] = useState("");
     const [isMinimized, setIsMinimized] = useState(true);
@@ -57,9 +57,8 @@ const ChatBot = () => {
                 </button>
             ) : (
                 <div className="w-80 h-96 bg-white border border-gray-300 rounded-lg shadow-lg flex flex-col">
-                    {/* Chat Header */}
                     <div className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white flex justify-between items-center py-2 px-4 rounded-t-lg">
-                        <span className="font-bold text-lg">Groovy Customer Support</span>
+                        <span className="font-bold text-lg">Grooves</span>
                         <button
                             onClick={() => setIsMinimized(true)}
                             className="text-white text-lg hover:text-gray-200"
@@ -69,17 +68,23 @@ const ChatBot = () => {
                         </button>
                     </div>
 
-                    <div className="flex-1 p-2 overflow-y-auto bg-yellow-50 space-y-2 rounded-xl">
-                    {messages.map((msg, index) => (
+                    <div className="flex-1 p-2 overflow-y-auto bg-yellow-50 space-y-4">
+                        {messages.map((msg, index) => (
                             <div
                                 key={index}
-                                className={`p-2 rounded-lg text-sm ${
-                                    msg.role === "user"
-                                        ? "bg-orange-200 text-right"
-                                        : "bg-teal-200 text-left"
+                                className={`flex ${
+                                    msg.role === "user" ? "justify-end" : "justify-start"
                                 }`}
                             >
-                                {msg.content}
+                                <div
+                                    className={`max-w-[75%] p-3 rounded-3xl text-sm ${
+                                        msg.role === "user"
+                                            ? "bg-orange-200 text-gray-900 rounded-br-none"
+                                            : "bg-teal-200 text-gray-800 rounded-bl-none"
+                                    }`}
+                                >
+                                    {msg.content}
+                                </div>
                             </div>
                         ))}
                         {isLoading && <div className="text-gray-500 text-center">Bot is typing...</div>}

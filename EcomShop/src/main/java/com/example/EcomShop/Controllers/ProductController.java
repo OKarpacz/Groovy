@@ -1,5 +1,5 @@
 package com.example.EcomShop.Controllers;
-
+import com.example.EcomShop.DTO.ProductDTO;
 import com.example.EcomShop.Services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.EcomShop.Models.Product;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -17,28 +18,32 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductDTO> getAllProducts() {
+        return productService.getAllProducts()
+                .stream()
+                .map(ProductDTO::new)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
         if (product != null) {
-            return ResponseEntity.ok(product);
+            return ResponseEntity.ok(new ProductDTO(product));
         } else {
             return ResponseEntity.notFound().build();
         }
     }
-
     @PostMapping
-    public Product createProduct(@Valid @RequestBody Product product) {
-        return productService.createProduct(product);
+    public ProductDTO createProduct(@Valid @RequestBody Product product) {
+        Product createdProduct = productService.createProduct(product);
+        return new ProductDTO(createdProduct);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        return ResponseEntity.ok(productService.updateProduct(id, productDetails));
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
+        Product updatedProduct = productService.updateProduct(id, productDetails);
+        return ResponseEntity.ok(new ProductDTO(updatedProduct));
     }
 
     @DeleteMapping("/{id}")

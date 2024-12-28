@@ -36,8 +36,6 @@ public class UserService {
         return userRepo.save(user);
     }
 
-
-
     public boolean validateUserCredentials(String email, String rawPassword) {
         User user = getUserByEmail(email);
         return user != null && passwordEncoder.matches(rawPassword, user.getPassword());

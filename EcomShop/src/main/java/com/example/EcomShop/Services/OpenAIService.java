@@ -17,14 +17,14 @@ public class OpenAIService {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            String prompt = "You are an AI assistant specialized in music and vinyl records. Answer questions only about music, vinyl records, artists, bands, albums, and record care. If a question is unrelated, respond with: 'I can only answer questions about music and vinyl records.'";
-
+            String prompt = "You are an AI assistant with expertise in music, vinyl records, music artists, and the history of bands they were in. However, you can also assist with general queries and provide helpful, accurate responses to a wide variety of topics.";
             List<Map<String, String>> updatedMessages = new ArrayList<>();
             updatedMessages.add(Map.of("role", "system", "content", prompt));
             updatedMessages.addAll(messages);
 
             if (!isRelevantTopic(messages.get(messages.size() - 1).get("content"))) {
-                return "I can only answer questions about music and vinyl records.";
+                return "I can only answer questions about music and vinyl records." +
+                        "If you think this message isn't correct call us at (212) 658-3916";
             }
 
             Map<String, Object> body = new HashMap<>();
@@ -53,8 +53,14 @@ public class OpenAIService {
     }
 
     private boolean isRelevantTopic(String userMessage) {
+        if (userMessage == null || userMessage.trim().isEmpty()) {
+            return false;
+        }
         String lowerCaseMessage = userMessage.toLowerCase();
-        List<String> allowedTopics = Arrays.asList("music", "vinyl", "records", "albums", "bands", "artists");
-        return allowedTopics.stream().anyMatch(lowerCaseMessage::contains);
+
+        List<String> musicKeywords = Arrays.asList(
+                "music", "vinyl", "records", "albums", "bands", "artists", "songs", "genres", "instruments","hello"
+        );
+        return musicKeywords.stream().anyMatch(lowerCaseMessage::contains);
     }
 }

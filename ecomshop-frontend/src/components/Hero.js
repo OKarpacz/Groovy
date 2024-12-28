@@ -17,9 +17,50 @@ const Hero = () => (
             <p className="text-lg text-orange-800 mt-4">
                 Groove into the past with our curated retro collection.
             </p>
-            <button className="mt-6 px-8 py-3 bg-gradient-to-r from-pink-400 to-orange-500 rounded-full text-white font-bold shadow-lg hover:scale-105 transition-transform">
-                Shop Now
-            </button>
+
+            <h3 className="text-lg font-bold text-gray-700 mt-6">
+                Check us out on Social Media
+            </h3>
+            <div className="flex justify-center space-x-4 mt-4">
+                <a
+                    href="https://github.com/OKarpacz/Groovy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-gray-700 to-black rounded-full shadow-lg hover:scale-110 transition-transform"
+                >
+                    <img
+                        src="/assets/HeroIcons/github-svgrepo-com.svg"
+                        alt="GitHub"
+                        className="w-6 h-6"
+                    />
+                </a>
+
+                <a
+                    href="https://instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-pink-500 to-red-400 rounded-full shadow-lg hover:scale-110 transition-transform"
+                >
+                    <img
+                        src="/assets/HeroIcons/instagram-svgrepo-com.svg"
+                        alt="Instagram"
+                        className="w-6 h-6"
+                    />
+                </a>
+
+                <a
+                    href="https://facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full shadow-lg hover:scale-110 transition-transform"
+                >
+                    <img
+                        src="/assets/HeroIcons/facebook-svgrepo-com.svg"
+                        alt="Facebook"
+                        className="w-6 h-6"
+                    />
+                </a>
+            </div>
         </div>
     </div>
 );
