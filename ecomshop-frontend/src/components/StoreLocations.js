@@ -32,7 +32,7 @@ const StoreLocations = () => {
             <div className="relative container mx-auto px-6">
                 <h2
                     className="text-3xl font-bold text-center mb-12 text-orange-900"
-                    style={{ fontFamily: "'Cooper Black', cursive" }}
+                    style={{fontFamily: "'Caprasimo', cursive"}}
                 >
                     Visit Our Groovy Stores
                 </h2>

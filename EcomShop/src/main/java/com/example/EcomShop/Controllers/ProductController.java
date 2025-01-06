@@ -1,14 +1,14 @@
 package com.example.EcomShop.Controllers;
+
 import com.example.EcomShop.DTO.ProductDTO;
+import com.example.EcomShop.Mappers.ProductMapper;
 import com.example.EcomShop.Services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.EcomShop.Models.Product;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -17,33 +17,37 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ProductMapper productMapper;
+
     @GetMapping
     public List<ProductDTO> getAllProducts() {
-        return productService.getAllProducts()
-                .stream()
-                .map(ProductDTO::new)
-                .collect(Collectors.toList());
+        return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
-        Product product = productService.getProductById(id);
-        if (product != null) {
-            return ResponseEntity.ok(new ProductDTO(product));
-        } else {
+        try {
+            ProductDTO productDTO = productService.getProductById(id);
+            return ResponseEntity.ok(productDTO);
+        } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
+
     @PostMapping
-    public ProductDTO createProduct(@Valid @RequestBody Product product) {
-        Product createdProduct = productService.createProduct(product);
-        return new ProductDTO(createdProduct);
+    public ProductDTO createProduct(@Valid @RequestBody ProductDTO productDTO) {
+        return productService.createProduct(productDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        Product updatedProduct = productService.updateProduct(id, productDetails);
-        return ResponseEntity.ok(new ProductDTO(updatedProduct));
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+        try {
+            ProductDTO updatedProductDTO = productService.updateProduct(id, productDTO);
+            return ResponseEntity.ok(updatedProductDTO);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")

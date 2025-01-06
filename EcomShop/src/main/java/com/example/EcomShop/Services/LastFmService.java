@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,6 +25,8 @@ public class LastFmService {
     private String apiKey;
     @Value("${lastfm.base.url}")
     private String baseUrl;
+
+    @Scheduled(fixedRate = 3600000)
     public void fetchAndSaveTopTracks() {
         String url = baseUrl + "?method=chart.gettoptracks&api_key=" + apiKey + "&format=json";
 

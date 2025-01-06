@@ -10,7 +10,7 @@ const Hero = () => (
         <div className="relative z-10 max-w-3xl p-6 bg-white/80 rounded-lg shadow-lg">
             <h1
                 className="text-6xl font-bold text-orange-900 drop-shadow-lg"
-                style={{ fontFamily: "'Cooper Black', cursive" }}
+                style={{fontFamily: "'Caprasimo', cursive"}}
             >
                 Rediscover the Vinyl Classics
             </h1>

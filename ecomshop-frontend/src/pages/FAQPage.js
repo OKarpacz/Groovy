@@ -22,7 +22,7 @@ const FAQPage = () => {
 
     return (
         <div className="container mx-auto px-6 py-12">
-            <h2 className="text-4xl font-bold text-center mb-8 text-orange-900" style={{ fontFamily: "'Cooper Black', cursive" }}>
+            <h2 className="text-4xl font-bold text-center mb-8 text-orange-900" style={{ fontFamily: "'Caprasimo', cursive", }}>
                 Frequently Asked Questions
             </h2>
             <div className="space-y-6">

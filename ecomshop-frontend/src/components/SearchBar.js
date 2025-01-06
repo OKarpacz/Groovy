@@ -1,3 +1,6 @@
+
+//Posibillity of addding it in the future
+
 import React, { useState } from "react";
 
 const SearchBar = ({ onSearch }) => {

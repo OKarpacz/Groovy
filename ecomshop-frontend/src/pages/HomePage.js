@@ -8,7 +8,7 @@ const HomePage = ({ onAddToCart }) => (
         <Hero />
         <div className="py-12">
             <h2 className="text-5xl font-bold text-orange-900 text-center mt-1 drop-shadow-lg mb-10"
-                style={{ fontFamily: "'Cooper Black', cursive" }}>Start Groovin</h2>
+                style={{fontFamily: "'Caprasimo', cursive"}}>Start Groovin</h2>
 
             <ProductList onAddToCart={onAddToCart} />
             <StoreLocations />

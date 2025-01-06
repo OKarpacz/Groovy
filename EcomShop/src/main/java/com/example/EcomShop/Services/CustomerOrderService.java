@@ -8,13 +8,18 @@ import com.example.EcomShop.Repositories.CustomerOrderRepo;
 import com.example.EcomShop.Repositories.OrderItemRepo;
 import com.example.EcomShop.Repositories.ProductRepo;
 import com.example.EcomShop.Repositories.UserRepo;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import org.slf4j.Logger;
 
 @Service
 public class CustomerOrderService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CustomerOrderService.class);
 
     private final CustomerOrderRepo customerOrderRepo;
     private final OrderItemRepo orderItemRepo;
@@ -30,16 +35,19 @@ public class CustomerOrderService {
     }
 
     public List<CustomerOrder> getAllOrders() {
+        logger.info("Fetching Orders");
         return customerOrderRepo.findAll();
     }
 
     public CustomerOrder getOrderById(Long id) {
+        logger.info("Fetching order by ID: {}", id);
         return customerOrderRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found with ID: " + id));
     }
 
     @Transactional
     public CustomerOrder createOrderWithProducts(Long userId, String orderDate, List<Long> productIds, List<Integer> quantities) {
+        logger.info("Creating order for user ID: {}", userId);
         if (productIds == null || productIds.isEmpty() || quantities == null || quantities.isEmpty()) {
             throw new RuntimeException("Product IDs and quantities cannot be null or empty.");
         }
@@ -75,6 +83,7 @@ public class CustomerOrderService {
     }
 
     public void deleteOrder(Long id) {
+        logger.info("Deleting order with ID: {}", id);
         CustomerOrder order = customerOrderRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found with ID: " + id));
         customerOrderRepo.delete(order);

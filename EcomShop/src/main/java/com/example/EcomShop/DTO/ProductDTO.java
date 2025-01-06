@@ -1,6 +1,5 @@
 package com.example.EcomShop.DTO;
 
-import com.example.EcomShop.Models.Product;
 
 public class ProductDTO {
     private Long id;
@@ -9,15 +8,6 @@ public class ProductDTO {
     private String image;
     private String description;
     private Integer availableQuantity;
-
-    public ProductDTO(Product product) {
-        this.id = product.getId();
-        this.name = product.getName();
-        this.price = product.getPrice();
-        this.image = product.getImage();
-        this.description = product.getDescription();
-        this.availableQuantity = product.getQuantity();
-    }
 
     public Long getId() {
         return id;

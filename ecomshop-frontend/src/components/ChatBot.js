@@ -51,6 +51,7 @@ const ChatBot = () => {
                 <button
                     onClick={() => setIsMinimized(false)}
                     className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white px-4 py-2 rounded-full shadow-lg hover:opacity-90 transition"
+                    style={{fontFamily: "'Caprasimo', cursive"}}
                     aria-label="Open chat"
                 >
                     💬 Chat

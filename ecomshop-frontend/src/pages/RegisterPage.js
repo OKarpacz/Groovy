@@ -47,7 +47,7 @@ const RegisterPage = () => {
             <div className="bg-white/80 p-8 rounded-lg shadow-2xl w-96">
                 <h2
                     className="text-3xl font-bold text-center mb-6 text-orange-800"
-                    style={{ fontFamily: "'Cooper Black', cursive" }}
+                    style={{ fontFamily: "'Caprasimo', cursive" }}
                 >
                     Create Your Account
                 </h2>
@@ -124,7 +124,7 @@ const RegisterPage = () => {
                         style={{
                             background: 'linear-gradient(90deg, #f77f00, #fcbf49)',
                             color: 'white',
-                            fontFamily: "'Cooper Black', cursive",
+                            fontFamily: "'Caprasimo', cursive",
                             borderRadius: '20px',
                         }}
                     >

@@ -25,13 +25,13 @@ const TopCharts = () => {
     return (
         <div>
             <ul className="divide-y divide-orange-400">
-                {topCharts.map((track) => (
+                {topCharts.map((track, index) => (
                     <li
                         key={track.id}
                         className="py-4 px-6 flex justify-between items-center hover:bg-orange-100 transition-all rounded-lg"
                     >
-                        <span className="text-lg font-bold text-orange-700 retro-font">
-                            {track.trackName}
+                        <span className="text-lg font-bold text-orange-700 retro-font"style={{fontFamily: "'Bebas Neue', cursive"}}>
+                            {index + 1}. {track.trackName}
                         </span>
                         <span className="text-sm text-orange-500 retro-font">
                             {track.artistName}

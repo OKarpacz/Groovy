@@ -6,7 +6,7 @@ const Footer = () => (
             <div className="text-center md:text-left">
                 <h3
                     className="font-bold text-xl text-yellow-300"
-                    style={{ fontFamily: "'Cooper Black', cursive" }}
+                    style={{fontFamily: "'Caprasimo', cursive"}}
                 >
                     Groovy
                 </h3>

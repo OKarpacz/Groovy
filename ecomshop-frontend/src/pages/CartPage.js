@@ -84,7 +84,7 @@ const CartPage = ({
             <h2
                 className="text-4xl font-bold mb-6 text-center text-orange-900"
                 style={{
-                    fontFamily: "'Cooper Black', cursive",
+                    fontFamily: "'Caprasimo', cursive",
                     textShadow: "2px 2px #ffcc70",
                 }}
             >
@@ -92,11 +92,12 @@ const CartPage = ({
             </h2>
 
             {cart.length === 0 ? (
+                <div className="flex items-center justify-center h-screen">
                 <div className="flex flex-col items-center text-center">
                     <h3
                         className="text-2xl font-medium text-orange-800 mb-4"
                         style={{
-                            fontFamily: "'Cooper Black', cursive",
+                            fontFamily: "'Caprasimo', cursive",
                             textShadow: "1px 1px #ffcc70",
                         }}
                     >
@@ -111,6 +112,7 @@ const CartPage = ({
                     >
                         Add some items to your cart and keep groovin'.
                     </p>
+                </div>
                 </div>
             ) : (
                 <div>
@@ -134,7 +136,7 @@ const CartPage = ({
                                         <h3
                                             className="text-lg font-bold text-orange-900"
                                             style={{
-                                                fontFamily: "'Cooper Black', cursive",
+                                                fontFamily: "'Caprasimo', cursive",
                                                 textShadow: "1px 1px #ffcc70",
                                             }}
                                         >
@@ -154,7 +156,7 @@ const CartPage = ({
                                     <p
                                         className="text-lg font-bold text-orange-900"
                                         style={{
-                                            fontFamily: "'Cooper Black', cursive",
+                                            fontFamily: "'Caprasimo', cursive",
                                             textShadow: "1px 1px #ffcc70",
                                         }}
                                     >
@@ -189,7 +191,7 @@ const CartPage = ({
                         <h3
                             className="text-3xl font-bold text-orange-900"
                             style={{
-                                fontFamily: "'Cooper Black', cursive",
+                                fontFamily: "'Caprasimo', cursive",
                                 textShadow: "2px 2px #ffcc70",
                             }}
                         >

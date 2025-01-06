@@ -4,6 +4,9 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Service
 public class OpenAIService {
@@ -13,7 +16,10 @@ public class OpenAIService {
     @Value("${openai.api.url}")
     private String apiUrl;
 
+    private static final Logger logger = LoggerFactory.getLogger(OpenAIService.class);
+
     public String getChatResponse(List<Map<String, String>> messages) {
+        logger.info("Sending request to OpenAI API");
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -59,7 +65,7 @@ public class OpenAIService {
         String lowerCaseMessage = userMessage.toLowerCase();
 
         List<String> musicKeywords = Arrays.asList(
-                "music", "vinyl", "records", "albums", "bands", "artists", "songs", "genres", "instruments","hello"
+                "music", "vinyl", "records", "albums", "bands", "artists", "songs", "genres", "instruments","hello","hi"
         );
         return musicKeywords.stream().anyMatch(lowerCaseMessage::contains);
     }

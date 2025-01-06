@@ -1,7 +1,7 @@
 package com.example.EcomShop.Controllers;
 
 import com.example.EcomShop.DTO.UserDTO;
-import com.example.EcomShop.Models.User;
+import com.example.EcomShop.Mappers.UserMapper;
 import com.example.EcomShop.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -19,44 +18,48 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @GetMapping
     public List<UserDTO> getAllUsers() {
-        return userService.getAllUsers()
-                .stream()
-                .map(UserDTO::fromEntity)
-                .collect(Collectors.toList());
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
-        if (user == null) {
+        try {
+            UserDTO userDTO = userService.getUserById(id);
+            return ResponseEntity.ok(userDTO);
+        } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(UserDTO.fromEntity(user));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> registerUser(@RequestBody User user) {
+    public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO) {
         try {
-            User createdUser = userService.createUser(user);
-            return ResponseEntity.ok(UserDTO.fromEntity(createdUser));
+            UserDTO createdUserDTO = userService.createUser(userDTO);
+            return ResponseEntity.ok(createdUserDTO);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(null);
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody User user) {
-        User existingUser = userService.getUserByEmail(user.getEmail());
-        if (existingUser != null && userService.validateUserCredentials(user.getEmail(), user.getPassword())) {
-            Map<String, Object> response = new HashMap<>();
-            response.put("userId", existingUser.getId());
-            response.put("message", "Login successful!");
-            return ResponseEntity.ok(response);
-        } else {
+    public ResponseEntity<?> loginUser(@RequestBody UserDTO userDTO) {
+        try {
+            boolean isValid = userService.validateUserCredentials(userDTO.getEmail(), userDTO.getPassword());
+            if (isValid) {
+                Map<String, Object> response = new HashMap<>();
+                response.put("userId", userService.getUserByEmail(userDTO.getEmail()).getId());
+                response.put("message", "Login successful!");
+                return ResponseEntity.ok(response);
+            } else {
+                return ResponseEntity.status(401).body("Invalid credentials");
+            }
+        } catch (RuntimeException e) {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
     }
-
 }

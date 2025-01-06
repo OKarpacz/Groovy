@@ -18,7 +18,7 @@ const ProductCard = ({ product, onAddToCart }) => {
             />
             <h2
                 className="text-2xl font-bold mt-4 text-orange-900"
-                style={{ fontFamily: "'Cooper Black', cursive" }}
+                style={{fontFamily: "'Caprasimo', cursive"}}
             >
                 {product.name}
             </h2>
