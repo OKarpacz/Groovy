@@ -46,12 +46,14 @@ To run the application, ensure you have the following prerequisites:
 ## Instructions to Run the Application
 
 ### Backend Setup
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/OKarpacz/groovy.git
    cd groovy
    ```
 2. Connect to Docker  
+
 3. Change the `application.properties` file located in `src/main/resources/`:
    ```bash
    # Aplikacja
@@ -99,22 +101,24 @@ To run the application, ensure you have the following prerequisites:
    spring.cache.caffeine.spec=maximumSize=100,expireAfterAccess=5m
    ```
 
-5. Build and run the backend application  
-   Backend will run at `https://localhost:8080`
+5. Build and run the backend application, Backend will run at `https://localhost:8080`
    
 ### Frontend Setup
-1.Navigate to the frontend package:
-```bash
-cd ecomshop-frontend
-```
-2.Install dependecies:
-```bash
-npm install
-```
-3.Run the project:
-```bash
-npm start
-```
+1. Clone the repository:
+   ```bash
+   cd ecomshop-frontend
+   ```
+
+2. Install dependecies:
+   ```bash
+   npm install
+   ```
+
+3. Run the project:
+   ```bash
+   npm start
+   ```
+
 
 
 
