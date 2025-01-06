@@ -31,6 +31,7 @@ To run the application, ensure you have the following prerequisites:
 | Aspect-Oriented Error Interception       | ✅ Fulfilled     | Can be found in `Aspects/ErrorHandlingAspect`                          |
 | Communication with External Service      | ✅ Fulfilled     | Last.fm API and OpenAI API                                             |
 | At Least 10 Endpoints                    | ✅ Fulfilled     | Multiple REST endpoints for all controllers.                           |
+| Separation into at least three Models    | ✅ Fulfilled     | Clear separation into Presentation, Service, and Repository layers.    |
 
 ---
 
