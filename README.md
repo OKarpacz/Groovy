@@ -121,6 +121,10 @@ To run the application, ensure you have the following prerequisites:
    npm start
    ```
 
+## License
+This project is licensed under the "Custom School Project License" provided in the [LICENSE](./LICENSE) file.
+
+
 
 
 
