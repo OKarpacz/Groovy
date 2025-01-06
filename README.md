@@ -50,11 +50,11 @@ To run the application, ensure you have the following prerequisites:
    ```bash
    git clone https://github.com/OKarpacz/groovy.git
    cd groovy
-2.Connect to Docker
-3.Change the application.properties file located in src/main/resources/
-4.Build and run the backend application
-**Backend will run at https://localhost:8080**
-
+2. Connect to Docker  
+3. Change the `application.properties` file located in `src/main/resources/`  
+4. Build and run the backend application  
+   Backend will run at `https://localhost:8080`
+   
 ### Frontend Setup
 1.Navigate to the frontend package:
 ```bash
