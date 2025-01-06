@@ -28,6 +28,7 @@ To run the application, ensure you have the following prerequisites:
 | Use of MapStruct                         | ✅ Fulfilled     | DTO mapping via MapStruct.                                             |
 | Database Connection                      | ✅ Fulfilled     | MariaDB configuration included.                                        |
 | Derived Query Methods                    | ✅ Fulfilled     | Example: `findByEmail` in UserRepo.                                    |
+| Aspect-Oriented Error Interception       | ✅ Fulfilled     | Can be found in `Aspects/ErrorHandlingAspect`                          |
 | Communication with External Service      | ✅ Fulfilled     | Last.fm API and OpenAI API                                             |
 | At Least 10 Endpoints                    | ✅ Fulfilled     | Multiple REST endpoints for all controllers.                           |
 
