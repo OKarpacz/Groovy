@@ -104,7 +104,7 @@ To run the application, ensure you have the following prerequisites:
 5. Build and run the backend application, Backend will run at `https://localhost:8080`
    
 ### Frontend Setup
-1. Clone the repository:
+1. Connect to the file with frontend:
    ```bash
    cd ecomshop-frontend
    ```
