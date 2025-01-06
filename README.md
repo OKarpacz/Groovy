@@ -97,6 +97,7 @@ To run the application, ensure you have the following prerequisites:
    # Caffeine Cache
    spring.cache.type=caffeine
    spring.cache.caffeine.spec=maximumSize=100,expireAfterAccess=5m
+   ```
 
 5. Build and run the backend application  
    Backend will run at `https://localhost:8080`
