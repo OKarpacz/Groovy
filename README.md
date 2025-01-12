@@ -40,7 +40,7 @@ To run the application, ensure you have the following prerequisites:
 | Feature                                  | Status          | Notes                                                                  |
 |:----------------------------------------:|:---------------:|:------------------------------------------------------------------------|
 | Spring Cache                             | ✅ Fulfilled     | Implemented using Caffeine Cache.                                      |
-| Logging to File                          | ✅ Fulfilled     | Logs saved to `ecomshop.log` in the `/logs` folder.                    |
+| Logging to File                          | ✅ Fulfilled     | Logs saved to `ecomshop.log`, also using API to extract it to the page.|
 | Frontend (React)                         | ✅ Fulfilled     | React-based frontend for dynamic interaction.                          |
 | Spring Security                          | ✅ Fulfilled     | Basic Spring Security configuration implemented.                       |
 | Spring Schedulers                        | ✅ Fulfilled     | Fetches top tracks from Last.fm hourly.                                |
