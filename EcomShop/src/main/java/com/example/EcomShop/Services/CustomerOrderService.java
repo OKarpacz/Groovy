@@ -58,6 +58,31 @@ public class CustomerOrderService {
         CustomerOrder customerOrder = new CustomerOrder();
         customerOrder.setUser(user);
         customerOrder.setOrderDate(orderDate);
+
+        StringBuilder orderDetails = new StringBuilder();
+        orderDetails.append("Customer Name: ").append(user.getFirstName()).append(" ").append(user.getLastName()).append("\n");
+        orderDetails.append("Address: ").append(user.getAddress()).append("\n");
+
+        double totalCost = 0.0;
+        for (int i = 0; i < productIds.size(); i++) {
+            Long productId = productIds.get(i);
+            Integer quantity = quantities.get(i);
+
+            Product product = productRepo.findById(productId)
+                    .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+
+            double cost = product.getPrice() * quantity;
+            totalCost += cost;
+
+            orderDetails.append("Product: ").append(product.getName())
+                    .append(", Quantity: ").append(quantity)
+                    .append(", Price: ").append(product.getPrice())
+                    .append(", Subtotal: ").append(cost).append("\n");
+        }
+
+        orderDetails.append("Total Cost: ").append(totalCost).append("\n");
+
+        customerOrder.setOrderDetails(orderDetails.toString());
         customerOrder = customerOrderRepo.save(customerOrder);
 
         for (int i = 0; i < productIds.size(); i++) {
@@ -66,6 +91,7 @@ public class CustomerOrderService {
 
         return customerOrder;
     }
+
 
     private void addProductToOrder(CustomerOrder order, Long productId, Integer quantity) {
         Product product = productRepo.findById(productId)
