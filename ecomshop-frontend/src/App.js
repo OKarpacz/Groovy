@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ChatBot from "./components/ChatBot";
 import FAQPage from "./pages/FAQPage";
 import TopChartsPage from "./pages/TopChartsPage";
+import LogPage from "./pages/LogPage";
 
 const cartReducer = (state, action) => {
     switch (action.type) {
@@ -82,6 +83,7 @@ const App = () => {
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/faq" element={<FAQPage />} />
                         <Route path="/top-charts" element={<TopChartsPage />} />
+                        <Route path="/logs" element={<LogPage />} />
                     </Routes>
                 </main>
 
